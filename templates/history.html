@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+
+    <!--Transactions History-->
+    <h2 class="subtitle">Transactions History</h2>
+
+    {% if transactions|length > 0 %}
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Symbol</th>
+                    <th scope="col">Shares</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Transacted</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for transaction in transactions %}
+
+                    <tr>
+                        <td scope="row">{{ transaction["symbol"] }}</td>
+                        <td scope="row">{{ transaction["shares"] }}</td>
+                        <td scope="row">{{ transaction["price"] }}</td>
+                        <td scope="row">{{ transaction["time"] }}</td>
+                    </tr>
+
+                {% endfor %}
+            </tbody>
+        </table>
+
+    {% else %}
+
+        <p>No Transaction in Your History</p>
+
+    {% endif %}
+{% endblock %}
